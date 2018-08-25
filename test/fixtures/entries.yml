@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  job_title: MyString
+  state: MyString
+  city: MyString
+  role: MyString
+  description: MyText
+  salary: 1
+  paytype: MyString
+  commission: false
+  firstdate: 2018-08-05
+  enddate: 2018-08-05
+  skills: MyText
+
+two:
+  job_title: MyString
+  state: MyString
+  city: MyString
+  role: MyString
+  description: MyText
+  salary: 1
+  paytype: MyString
+  commission: false
+  firstdate: 2018-08-05
+  enddate: 2018-08-05
+  skills: MyText

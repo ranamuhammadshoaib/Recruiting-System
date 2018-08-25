@@ -1,0 +1,33 @@
+<h4> Data</h4>
+<table>
+  <tr>
+    <th>Job_Title</th>
+    <th>state</th>
+    <th>city</th>
+    <th>Role</th>
+   <th>Description</th>
+   <th>Salary</th>
+<th>paytype</th>
+<th>Commission</th>
+<th>Start Date</th>
+<th>End Date</th>
+<th>Skills</th>
+  </tr>
+
+  <% @data.each do |myrec| %>
+    <tr>
+      <td><%= myrec.job_title %></td>
+      <td><%= myrec.state %></td>
+      <td><%= myrec.city %></td>
+      <td><%= myrec.role %></td>
+      <td><%= myrec.description %></td>
+      <td><%= myrec.salary %></td>
+      <td><%= myrec.paytype %></td>
+      <td><%= myrec.commission %></td>
+      <td><%= myrec.firstdate %></td>
+      <td><%= myrec.enddate %></td>
+      <td><%= myrec.skills %></td>
+
+    </tr>
+  <% end %>
+</table>

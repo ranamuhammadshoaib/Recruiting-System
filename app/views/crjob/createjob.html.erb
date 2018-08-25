@@ -1,0 +1,163 @@
+
+<div class="card card-raised">
+
+<br>
+  <h4 class="h4">Job Info</h4>
+
+<%=form_for (:entry) ,url: {:action=>'createjob'} do|f| %>
+
+
+<%=f.text_field (:job_title), :class=>'field',:required=>'true',:placeholder=>'Job Title',:type=>'text'%>
+
+<select id="states-of-country" name="entry[state]">
+  <option id="no-state" value="" selected>Select Your State</option>
+
+  <% CS.states(:us).each do |key, value| %>
+  <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+
+<%if value='Other'%>
+<% CS.get.each do |key, value| %>
+<option value="<%= value %>" id="<%= key %>"><%= value %></option>
+
+
+<% end %>
+
+  <% end %>
+
+      <% end %>
+</select>
+
+
+
+
+
+
+
+
+<select id="cities-of-state" name="entry[city]"  required>
+  <option value="" selected>Select Your City</option>
+</select>
+
+
+
+
+
+<%=f.select (:role),options_for_select(
+  [
+    ['Accounts', 'Accounts'],
+    ['Accounts','Accounts' ],
+    ['Management','Management'],
+    ['Cultivation','Cultivation']
+  ]
+) %>
+
+
+
+
+
+<div id="border"></div>
+
+
+<br>
+
+
+
+    <h4 class="h4">Job Description</h4>
+
+    <div class="linkmargin"  id="wysihtml5-toolbar" style="display: none;">
+    <a class="editlink" data-wysihtml5-command="bold">bold</a>
+    <a data-wysihtml5-command="italic">italic</a>
+    <a data-wysihtml5-command="underline">underline</a>
+
+    <a data-wysihtml5-command="insertOrderedList">Ordered list</a>
+    <a data-wysihtml5-command="insertUnorderedList">Unordered list</a>
+
+
+    <a data-wysihtml5-command="createLink" title="Insert Link"> Insert Link</a>
+    <a data-wysihtml5-command="Insertimage">Insert Image</a>
+    <div data-wysihtml5-dialog="createLink" style="display: none;">
+      <label>
+        Link: <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+      </label>
+      <a data-wysihtml5-dialog-action="save">OK</a>
+      <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+    </div>
+  </div>
+<br>
+<%=f.text_area (:description) ,:id => 'wysihtml5-textarea',:required=>'true',size: "105x7",:placeholder=>'Description', :type=>'text'%>
+
+
+
+
+
+
+
+<div id="border"></div>
+<br>
+<h4 class="h4"> How Much to pay?</h4>
+
+
+<p id="text"> Pay Range - Hourly or Salary </p>
+<%=f.text_field (:salary), :class=>'field fieldwidth', :required=>'true',:placeholder=>'32,0000-45,0000'%>
+<br>
+<br>
+
+<p id="text"> Pay</p>
+<p id="radio_button">
+<%=f.radio_button (:paytype),:checked => false %>
+<%=f.label 'Hourly'%>
+<%=f.radio_button (:paytype),:checked => false %>
+<%=f.label 'Annualy'%>
+</p>
+<br>
+<%=f.label 'Job includes commission?',:class=>'custom'%>
+<%=f.check_box (:commission)%>
+
+<div id="border"></div>
+<br>
+<h4 class="h4"> Start Hiring Date - End Hiring Date</h4>
+<p id="text">Start Date</p>
+<%=f.date_field (:firstdate), :class=>' field'%>
+
+<p class="date"> End Date</p>
+<%=f.date_field  (:enddate), :class=>'field datefield'%>
+
+
+
+
+
+<br>
+<div id="border"></div>
+<br>
+<h4 class="h4"> Pick 3 Skills</h4>
+
+<%=f.select (:skills),options_for_select(
+      [
+    ['CS', 'CS'],
+    ['DM','DM' ],
+    ['Chemistry','Chemistry'],
+    ['Physics','Physics'],
+]
+),{},{:class=>"btn dropdown-toggle bs-placeholder btn-default"}%>
+
+
+
+
+
+<br>
+<br>
+<button class='button'> CREATE JOB</button>
+
+</div>
+
+<script>
+  var editor = new wysihtml5.Editor("wysihtml5-textarea", {
+    toolbar:      "wysihtml5-toolbar",
+    parserRules:  wysihtml5ParserRules
+  });
+
+$("#states-of-country").append('<option value="Other">Other</option>');
+
+</script>
+
+<% end %>
