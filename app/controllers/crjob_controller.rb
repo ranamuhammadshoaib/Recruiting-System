@@ -1,5 +1,7 @@
 class CrjobController < ApplicationController
 
+  include CrjobHelper
+
   def createjob
 
     @entry=Entry.new(tableformat)
@@ -13,11 +15,6 @@ def index
 end
 
 
-private
-  def tableformat
-params.fetch(:entry,{}).permit(:job_title,:state,:city,:role,:description,:salary,:paytype,:commission,:firstdate,:enddate,:skills)
-
-  end
 
 
 

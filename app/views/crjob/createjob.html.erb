@@ -4,34 +4,18 @@
 <br>
   <h4 class="h4">Job Info</h4>
 
-<%=form_for (:entry) ,url: {:action=>'createjob'} do|f| %>
+<%=form_for (:entry),url: {:action=>'createjob'}, html: {class: "job"} do|f| %>
 
 
 <%=f.text_field (:job_title), :class=>'field',:required=>'true',:placeholder=>'Job Title',:type=>'text'%>
 
 <select id="states-of-country" name="entry[state]">
   <option id="no-state" value="" selected>Select Your State</option>
-
   <% CS.states(:us).each do |key, value| %>
   <option value="<%= value %>" id="<%= key %>"><%= value %></option>
 
-<%if value='Other'%>
-<% CS.get.each do |key, value| %>
-<option value="<%= value %>" id="<%= key %>"><%= value %></option>
-
-
-<% end %>
-
-  <% end %>
-
       <% end %>
 </select>
-
-
-
-
-
-
 
 
 <select id="cities-of-state" name="entry[city]"  required>
@@ -50,7 +34,6 @@
     ['Cultivation','Cultivation']
   ]
 ) %>
-
 
 
 
@@ -104,9 +87,9 @@
 
 <p id="text"> Pay</p>
 <p id="radio_button">
-<%=f.radio_button (:paytype),:checked => false %>
+<%=f.radio_button (:paytype),value:'Hourly' %>
 <%=f.label 'Hourly'%>
-<%=f.radio_button (:paytype),:checked => false %>
+<%=f.radio_button (:paytype),value:'Annualy' %>
 <%=f.label 'Annualy'%>
 </p>
 <br>
@@ -121,7 +104,6 @@
 
 <p class="date"> End Date</p>
 <%=f.date_field  (:enddate), :class=>'field datefield'%>
-
 
 
 
@@ -149,15 +131,27 @@
 <button class='button'> CREATE JOB</button>
 
 </div>
-
 <script>
   var editor = new wysihtml5.Editor("wysihtml5-textarea", {
     toolbar:      "wysihtml5-toolbar",
     parserRules:  wysihtml5ParserRules
   });
 
-$("#states-of-country").append('<option value="Other">Other</option>');
+  $("#states-of-country").append('<option value="Other">Other</option>');
 
+   $('#states-of-country').change(function(){
+    var selectedValue = $(this).val();
+     if(selectedValue=="Other"){
+    $('<input/>').attr({type: 'text',class:"field",placeholder:'Country Name'}).appendTo('.job').insertBefore("#cities-of-state");
+
+}
+else if (selectedValue !="Other") {
+  $('<input/>').css('display','none');
+}
+else {
+  alert('good');
+}
+   })
 </script>
 
 <% end %>

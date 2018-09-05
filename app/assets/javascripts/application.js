@@ -10,14 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
-//= require activestorage
 //= require wysihtml5
 //= require parser_rules/advanced
 //= require turbolinks
+//= require crjob
 //= require bootstrap
-//= require chosen
 //= require_tree .
+
 
 
 $(document).on('change', '#states-of-country', function(e) {
